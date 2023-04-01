@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TelegramBotForKubG.Migrations
 {
     /// <inheritdoc />
-    public partial class Students : Migration
+    public partial class Student : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -42,14 +42,15 @@ namespace TelegramBotForKubG.Migrations
                 name: "Students",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Chat_Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Login = table.Column<string>(type: "text", nullable: true),
-                    Code_Id = table.Column<int>(type: "integer", nullable: false)
+                    Code_Id = table.Column<int>(type: "integer", nullable: false),
+                    StageDialog = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.PrimaryKey("PK_Students", x => x.Chat_Id);
                 });
         }
 

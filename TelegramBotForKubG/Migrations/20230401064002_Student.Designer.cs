@@ -11,8 +11,8 @@ using TelegramBotForKubG.dbutils;
 namespace TelegramBotForKubG.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230328112913_Students")]
-    partial class Students
+    [Migration("20230401064002_Student")]
+    partial class Student
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,11 +61,11 @@ namespace TelegramBotForKubG.Migrations
 
             modelBuilder.Entity("TelegramBotForKubG.dbutils.Students", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Chat_Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Chat_Id"));
 
                     b.Property<int>("Code_Id")
                         .HasColumnType("integer");
@@ -73,7 +73,10 @@ namespace TelegramBotForKubG.Migrations
                     b.Property<string>("Login")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.Property<int>("StageDialog")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Chat_Id");
 
                     b.ToTable("Students");
                 });
